@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.usher.databinding.HomeBinding
-import com.synnapps.carouselview.CarouselView
-import com.synnapps.carouselview.ImageListener
 
 class Home: Fragment() {
 
