@@ -5,13 +5,13 @@ import com.squareup.moshi.Json
 
 data class Now_playing(
     @Json(name = "dates")
-    var dates: Dates,
+    var dates: Dates = Dates(),
     @Json(name = "page")
-    var page: Int,
+    var page: Int = 0,
     @Json(name = "results")
-    var results: List<Result>,
+    var results: List<Result> = listOf(),
     @Json(name = "total_pages")
-    var totalPages: Int,
+    var totalPages: Int = 0,
     @Json(name = "total_results")
-    var totalResults: Int
+    var totalResults: Int = 0
 )
