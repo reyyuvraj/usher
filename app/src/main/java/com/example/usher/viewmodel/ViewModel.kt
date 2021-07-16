@@ -8,21 +8,42 @@ import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.usher.models.get_now_playing.NowPlaying
-import com.example.usher.models.get_now_playing.Result
+import com.example.usher.models.get_popular_movie.Popular
+import com.example.usher.models.get_top_rated_movies.TopRated
+import com.example.usher.models.get_upcoming.Upcoming
 import com.example.usher.repository.Repository
 import com.example.usher.util.InternetConnectivity
 
-class ViewModelPlaying(application: Application) : AndroidViewModel(application) {
+class ViewModel(application: Application) : AndroidViewModel(application) {
 
-    val playData: LiveData<NowPlaying>
+    val playingData: LiveData<NowPlaying>
+    val popularData: LiveData<Popular>
+    val topData: LiveData<TopRated>
+    val upcomingData: LiveData<Upcoming>
+
     private val repository = Repository(application)
 
     init {
-        this.playData = repository.playingData
+        this.playingData = repository.playingData
+        this.popularData = repository.popularData
+        this.topData = repository.topData
+        this.upcomingData = repository.upcomingData
     }
 
     fun getPlaying() {
         repository.getPlaying()
+    }
+
+    fun getPopular() {
+        repository.getPopular()
+    }
+
+    fun getTop(){
+        repository.getTop()
+    }
+
+    fun getUpcoming(){
+        repository.getUpcoming()
     }
 
     private fun hasInternetConnection(): Boolean {

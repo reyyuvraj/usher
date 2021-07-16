@@ -9,12 +9,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
-import com.example.usher.models.get_popular_movie.Result
+import com.example.usher.call.MoviesAPI.Companion.backdrop
+import com.example.usher.models.get_upcoming.Result
 
 
 class AdapterUpcoming(
-    private val context: Context,
-    private val listener: AdapterUpcoming.OnElementClick
+    private val context: Context/*,
+    private val listener: AdapterUpcoming.OnElementClick*/
 ) : RecyclerView.Adapter<AdapterUpcoming.ViewHolder>() {
     private var itemList: List<Result> = emptyList()
 
@@ -30,7 +31,7 @@ class AdapterUpcoming(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(entity.backdropPath).into(holder.newsImage)
+        Glide.with(context).load(backdrop+entity.backdropPath).into(holder.newsImage)
         holder.newsTitle.text = entity.originalTitle
     }
 
@@ -40,8 +41,8 @@ class AdapterUpcoming(
 
     inner class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        val newsImage: ImageView = itemView.findViewById(R.id.popularImage)
-        val newsTitle: TextView = itemView.findViewById(R.id.popularTitle)
+        val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
+        val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
 
         init {
             itemView.setOnClickListener(this)
@@ -50,7 +51,7 @@ class AdapterUpcoming(
         override fun onClick(i: View?) {
             val position = adapterPosition
             val mov = itemList[position]
-            listener.onItemClick(mov, position)
+            //listener.onItemClick(mov, position)
         }
     }
 

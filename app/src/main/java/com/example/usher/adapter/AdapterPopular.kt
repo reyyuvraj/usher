@@ -9,13 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
+import com.example.usher.call.MoviesAPI.Companion.backdrop
 import com.example.usher.models.get_popular_movie.Result
 
 
-class AdapterPopular(
-    private val context: Context,
-    private val listener: AdapterPopular.OnElementClick
-) : RecyclerView.Adapter<AdapterPopular.ViewHolder>() {
+class AdapterPopular(private val context: Context) :
+    RecyclerView.Adapter<AdapterPopular.ViewHolder>() {
 
     private var itemList: List<Result> = emptyList()
 
@@ -27,11 +26,18 @@ class AdapterPopular(
                 false
             )
         return ViewHolder(itemView)
+        /*return AdapterPopular.ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_view,
+                parent,
+                false
+            )
+        )*/
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(entity.backdropPath).into(holder.newsImage)
+        Glide.with(context).load(backdrop+entity.backdropPath).into(holder.newsImage)
         holder.newsTitle.text = entity.originalTitle
     }
 
@@ -39,20 +45,10 @@ class AdapterPopular(
         return itemList.size
     }
 
-    inner class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
-        val newsImage: ImageView = itemView.findViewById(R.id.popularImage)
-        val newsTitle: TextView = itemView.findViewById(R.id.popularTitle)
+    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+        val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
+        val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
 
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(i: View?) {
-            val position = adapterPosition
-            val mov = itemList[position]
-            listener.onItemClick(mov, position)
-        }
     }
 
     fun setData(element: List<Result>) {

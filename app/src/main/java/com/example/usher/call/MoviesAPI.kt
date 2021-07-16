@@ -2,9 +2,10 @@ package com.example.usher.call
 
 import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_now_playing.NowPlaying
-import com.example.usher.models.get_now_playing.Result
+import com.example.usher.models.get_popular_movie.Popular
+import com.example.usher.models.get_top_rated_movies.TopRated
+import com.example.usher.models.get_upcoming.Upcoming
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -26,7 +27,7 @@ interface MoviesAPI {
         language: String = "en-US",
         @Query("page")
         page: Int = 1
-    ): Response<Latest>
+    ): Call<Latest>
 
     @GET("/3/movie/now_playing")
     fun getNowPlaying(
@@ -39,32 +40,32 @@ interface MoviesAPI {
     ): Call<NowPlaying>
 
     @GET("/3/movie/popular")
-    suspend fun getPopularMovies(
+    fun getPopularMovies(
         @Query("api_key")
         api_key: String = apiKey,
         @Query("language")
         language: String = "en-US",
         @Query("page")
         page: Int = 1
-    ): Response<Result>
+    ): Call<Popular>
 
     @GET("/3/movie/top_rated")
-    suspend fun getTopRated(
+    fun getTopRated(
         @Query("api_key")
         api_key: String = apiKey,
         @Query("language")
         language: String = "en-US",
         @Query("page")
         page: Int = 1
-    ): Response<Result>
+    ): Call<TopRated>
 
     @GET("/3/movie/upcoming")
-    suspend fun getUpcoming(
+    fun getUpcoming(
         @Query("api_key")
         api_key: String = apiKey,
         @Query("language")
         language: String = "en-US",
         @Query("page")
         page: Int = 1
-    ): Response<Result>
+    ): Call<Upcoming>
 }

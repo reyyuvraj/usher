@@ -29,7 +29,7 @@ data class Result(
     @Json(name = "video")
     var video: Boolean = false,
     @Json(name = "vote_average")
-    var voteAverage: Int = 0,
+    var voteAverage: Double = 0.0,
     @Json(name = "vote_count")
     var voteCount: Int = 0
 )

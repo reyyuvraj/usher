@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
 import com.example.usher.call.MoviesAPI.Companion.backdrop
-import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_now_playing.Result
 
 class AdapterPlaying(private val context: Context) :
