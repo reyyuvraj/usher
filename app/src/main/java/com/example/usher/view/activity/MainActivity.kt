@@ -1,9 +1,10 @@
-package com.example.usher
+package com.example.usher.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.usher.R
 import com.example.usher.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
