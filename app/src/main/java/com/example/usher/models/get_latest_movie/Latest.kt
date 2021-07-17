@@ -23,7 +23,7 @@ data class Latest(
     @Json(name = "original_language")
     var originalLanguage: String = "",
     @Json(name = "original_title")
-    var originalTitle: String = "",
+    val originalTitle: String = "",
     @Json(name = "overview")
     var overview: String = "",
     @Json(name = "popularity")

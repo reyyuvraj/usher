@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".Home">
+    tools:context=".view.fragment.Home">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -65,29 +65,10 @@
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
             <TextView
-                android:id="@+id/text02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/trending"
-                android:text="Latest"
-                android:textColor="@color/yellow"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/latest"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_below="@+id/text02"
-                android:layout_marginTop="1dp"
-                android:orientation="horizontal"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
-
-            <TextView
                 android:id="@+id/text03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/latest"
+                android:layout_below="@+id/trending"
                 android:text="Now Playing"
                 android:textColor="@color/yellow"
                 android:textSize="24sp"
@@ -111,6 +92,17 @@
                 android:textColor="@color/yellow"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <!--<com.google.android.material.card.MaterialCardView
+                android:id="@id/popularCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/teal_200"
+                android:clickable="false">
+
+
+
+            </com.google.android.material.card.MaterialCardView>-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popular"
@@ -158,7 +150,7 @@
                 android:layout_marginTop="1dp"
                 android:orientation="horizontal"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-                tools:listitem="@layout/item_upcoming" />
+                tools:listitem="@layout/item_view" />
 
         </RelativeLayout>
 
