@@ -19,6 +19,7 @@ class Home : Fragment() {
 
     private lateinit var binding: HomeBinding
     private lateinit var viewModel: ViewModel
+    private lateinit var adapterTrending: AdapterTrending
     private lateinit var adapterLatest: AdapterLatest
     private lateinit var adapterPlaying: AdapterPlaying
     private lateinit var adapterPopular: AdapterPopular
@@ -31,22 +32,37 @@ class Home : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = HomeBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val trendingRecyclerView: RecyclerView = binding.trending
+        trendingRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val playRecyclerView: RecyclerView = binding.nowPlaying
-        playRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        playRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val popularRecyclerView: RecyclerView = binding.popular
-        popularRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        popularRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val topRecyclerView: RecyclerView = binding.topRated
-        topRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        topRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val upcomingRecyclerView: RecyclerView = binding.upcoming
-        upcomingRecyclerView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        upcomingRecyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
+        viewModel.getTrending()
         viewModel.getPlaying()
         viewModel.getPopular()
         viewModel.getTop()
         viewModel.getUpcoming()
 
+        adapterTrending = AdapterTrending(requireContext())
+        trendingRecyclerView.adapter = adapterTrending
         adapterPlaying = AdapterPlaying(requireContext())
         playRecyclerView.adapter = adapterPlaying
         adapterPopular = AdapterPopular(requireContext())
@@ -56,30 +72,40 @@ class Home : Fragment() {
         adapterUpcoming = AdapterUpcoming(requireContext())
         upcomingRecyclerView.adapter = adapterUpcoming
 
-        viewModel.playingData.observe(viewLifecycleOwner,{
+        viewModel.trendingData.observe(viewLifecycleOwner, {
+            adapterTrending.setData(it.results)
+        })
+
+        viewModel.playingData.observe(viewLifecycleOwner, {
             adapterPlaying.setData(it.results)
         })
 
-        viewModel.popularData.observe(viewLifecycleOwner,{
+        viewModel.popularData.observe(viewLifecycleOwner, {
             adapterPopular.setData(it.results)
         })
 
-        viewModel.topData.observe(viewLifecycleOwner,{
+        viewModel.topData.observe(viewLifecycleOwner, {
             adapterTop.setData(it.results)
         })
 
-        viewModel.upcomingData.observe(viewLifecycleOwner,{
+        viewModel.upcomingData.observe(viewLifecycleOwner, {
             adapterUpcoming.setData(it.results)
         })
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         binding.floatingActionButtonSearch.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_home_to_search)
         }
     }
+
+    /*private fun displayCarousel(){
+        var imageSlider: ImageSlider = binding.carousel
+        var slideModels = ArrayList<SlideModel>()
+
+        slideModels.add(SlideModel(image1,"image 1"))
+        slideModels.add(SlideModel(image2,"image 1"))
+        slideModels.add(SlideModel(image3,"image 1"))
+        slideModels.add(SlideModel(image4,"image 1"))
+        imageSlider.setImageList(slideModels,true)
+    }*/
 
 }

@@ -2,11 +2,7 @@ package com.example.usher.models.get_now_playing
 
 
 data class NowPlaying(
-//    var dates: Dates = Dates(),
-//    var page: Int = 0,
-    val results: MutableList<Result>/*,
-    var totalPages: Int = 0,
-    var totalResults: Int = 0*/
+    val results: MutableList<Result>
     /*@Json(name = "dates")
     var dates: Dates = Dates(),
     @Json(name = "page")

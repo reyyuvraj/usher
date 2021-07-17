@@ -9,12 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
+import com.example.usher.call.MoviesAPI.Companion.backdrop
 import com.example.usher.models.get_latest_movie.Latest
 
-class AdapterLatest(
-    private val context: Context,
-    private val listener: OnElementClick
-) : RecyclerView.Adapter<AdapterLatest.ViewHolder>() {
+class AdapterLatest(private val context: Context) :
+    RecyclerView.Adapter<AdapterLatest.ViewHolder>() {
 
     private var itemList: List<Latest> = emptyList()
 
@@ -30,28 +29,17 @@ class AdapterLatest(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(entity.backdropPath).into(holder.newsImage)
-        holder.newsTitle.text = entity.originalTitle
+        Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
+        holder.newsTitle.text = entity.title
     }
 
     override fun getItemCount(): Int {
         return itemList.size
     }
 
-    inner class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    inner class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newsImage: ImageView = itemView.findViewById(R.id.latestImage)
         val newsTitle: TextView = itemView.findViewById(R.id.latestTitle)
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(i: View?) {
-            val position = adapterPosition
-            val mov = itemList[position]
-            listener.onItemClick(mov, position)
-        }
     }
 
     fun setData(element: List<Latest>) {

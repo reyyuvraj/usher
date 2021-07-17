@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#f5c518</color>
     <color name="nero">#1f1f1f</color>
+    <color name="cardOne">#222222</color>
+    <color name="cardList">#1a1a1a</color>
 </resources>

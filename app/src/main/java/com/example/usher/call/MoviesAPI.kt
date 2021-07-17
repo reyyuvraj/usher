@@ -1,5 +1,6 @@
 package com.example.usher.call
 
+import com.example.usher.models.getTrending.Trending
 import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_now_playing.NowPlaying
 import com.example.usher.models.get_popular_movie.Popular
@@ -15,19 +16,17 @@ interface MoviesAPI {
         const val baseURL: String = "https://api.themoviedb.org"
         const val apiKey: String = "1878b3b064120b74b4d7cd8c9e155cdf"
         const val backdrop: String = "https://image.tmdb.org/t/p/w500"
-        const val playingURL: String =
-            "$baseURL/3/movie/now_playing?api_key=$apiKey&language=en-US&page=1"
+        const val image1: String = "https://image.tmdb.org/t/p/w500/dq18nCTTLpy9PmtzZI6Y2yAgdw5.jpg"
+        const val image2: String = "https://image.tmdb.org/t/p/w500/wjQXZTlFM3PVEUmKf1sUajjygqT.jpg"
+        const val image3: String = "https://image.tmdb.org/t/p/w500/xXHZeb1yhJvnSHPzZDqee0zfMb6.jpg"
+        const val image4: String = "https://image.tmdb.org/t/p/w500/z2UtGA1WggESspi6KOXeo66lvLx.jpg"
     }
 
-    @GET("/3/movie/latest")
-    fun getLatest(
+    @GET("/3/trending/all/week")
+    fun getTrending(
         @Query("api_key")
-        api_key: String = apiKey,
-        @Query("language")
-        language: String = "en-US",
-        @Query("page")
-        page: Int = 1
-    ): Call<Latest>
+        api_key: String = apiKey
+    ): Call<Trending>
 
     @GET("/3/movie/now_playing")
     fun getNowPlaying(

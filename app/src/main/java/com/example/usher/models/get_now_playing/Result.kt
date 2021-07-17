@@ -32,6 +32,4 @@ data class Result(
     var overview: String = "",
     @Json(name = "backdrop_path")
     var backdropPath: String = ""
-/*var title: String = "",
-    var backdropPath: String = ""*/
 )

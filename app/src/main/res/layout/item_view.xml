@@ -9,7 +9,7 @@
     android:focusable="true"
     android:orientation="vertical"
     app:cardCornerRadius="15dp"
-    app:cardElevation="25dp">
+    app:cardElevation="100dp">
 
     <LinearLayout
         style="@style/Base.CardView"
@@ -30,11 +30,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:padding="3dp"
             android:text="MovieName"
             android:textColor="@color/white"
-            android:maxLines="1"
-            android:ellipsize="end"
             android:textSize="14sp" />
 
     </LinearLayout>

@@ -7,6 +7,8 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import com.example.usher.models.getTrending.Trending
+import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_now_playing.NowPlaying
 import com.example.usher.models.get_popular_movie.Popular
 import com.example.usher.models.get_top_rated_movies.TopRated
@@ -20,6 +22,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val popularData: LiveData<Popular>
     val topData: LiveData<TopRated>
     val upcomingData: LiveData<Upcoming>
+    val trendingData: LiveData<Trending>
 
     private val repository = Repository(application)
 
@@ -28,6 +31,11 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         this.popularData = repository.popularData
         this.topData = repository.topData
         this.upcomingData = repository.upcomingData
+        this.trendingData = repository.trendingData
+    }
+
+    fun getTrending(){
+        repository.getTrending()
     }
 
     fun getPlaying() {
@@ -46,30 +54,4 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         repository.getUpcoming()
     }
 
-    private fun hasInternetConnection(): Boolean {
-        val connectivityManager = getApplication<InternetConnectivity>().getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val activeNetwork = connectivityManager.activeNetwork ?: return false
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-            return when {
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                else -> false
-            }
-        } else {
-            connectivityManager.activeNetworkInfo?.run {
-                return when (type) {
-                    ConnectivityManager.TYPE_WIFI -> true
-                    ConnectivityManager.TYPE_MOBILE -> true
-                    ConnectivityManager.TYPE_ETHERNET -> true
-                    else -> false
-                }
-            }
-        }
-        return false
-    }
 }

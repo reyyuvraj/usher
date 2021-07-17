@@ -27,8 +27,8 @@ class AdapterPlaying(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(backdrop + entity.backdropPath).into(holder.newsImage)
-        holder.newsTitle.text = entity.originalTitle
+        Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
+        holder.newsTitle.text = entity.title
     }
 
     override fun getItemCount(): Int {

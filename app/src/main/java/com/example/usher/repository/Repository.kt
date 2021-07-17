@@ -5,6 +5,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.usher.call.RetrofitInstance
+import com.example.usher.models.getTrending.Trending
+import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_now_playing.NowPlaying
 import com.example.usher.models.get_popular_movie.Popular
 import com.example.usher.models.get_top_rated_movies.TopRated
@@ -19,6 +21,30 @@ class Repository constructor(val application: Application) {
     val popularData = MutableLiveData<Popular>()
     val topData = MutableLiveData<TopRated>()
     val upcomingData = MutableLiveData<Upcoming>()
+    val trendingData = MutableLiveData<Trending>()
+    val latestData = MutableLiveData<List<Latest>>()
+
+    fun getTrending(){
+
+        val retrofitService = RetrofitInstance.api
+        val callAPI = retrofitService.getTrending()
+
+        callAPI.enqueue(object : Callback<Trending>{
+            override fun onFailure(call: Call<Trending>, t: Throwable) {
+                //Log.d("Repo", "onFailure: ${t.message}")
+                Toast.makeText(application,"Error",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<Trending>, response: Response<Trending>) {
+                Log.d("trending", "onResponse: $response")
+                val play = response.body()
+                if (play!=null){
+                    val pop= play.results
+                    trendingData.value = Trending(pop)
+                }
+            }
+        })
+    }
 
     fun getPlaying(){
 
