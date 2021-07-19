@@ -1,20 +1,19 @@
 package com.example.usher.viewmodel
 
 import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.usher.models.getTrending.Trending
-import com.example.usher.models.get_latest_movie.Latest
+import com.example.usher.models.get_movie_credits.MovieCredits
+import com.example.usher.models.get_movie_details.MovieDetails
 import com.example.usher.models.get_now_playing.NowPlaying
+import com.example.usher.models.get_person_details.PersonDetails
+import com.example.usher.models.get_person_images.PersonImages
 import com.example.usher.models.get_popular_movie.Popular
+import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.models.get_top_rated_movies.TopRated
 import com.example.usher.models.get_upcoming.Upcoming
 import com.example.usher.repository.Repository
-import com.example.usher.util.InternetConnectivity
 
 class ViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -23,6 +22,11 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val topData: LiveData<TopRated>
     val upcomingData: LiveData<Upcoming>
     val trendingData: LiveData<Trending>
+    val castData: LiveData<MovieCredits>
+    val similarData: LiveData<SimilarMovies>
+    val movieData: LiveData<MovieDetails>
+    val personData: LiveData<PersonDetails>
+    val personImagesData: LiveData<PersonImages>
 
     private val repository = Repository(application)
 
@@ -32,9 +36,14 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         this.topData = repository.topData
         this.upcomingData = repository.upcomingData
         this.trendingData = repository.trendingData
+        this.castData = repository.moviesCast
+        this.similarData = repository.similarMovies
+        this.movieData = repository.movieDetails
+        this.personData = repository.personDetails
+        this.personImagesData = repository.personImages
     }
 
-    fun getTrending(){
+    fun getTrending() {
         repository.getTrending()
     }
 
@@ -46,12 +55,31 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         repository.getPopular()
     }
 
-    fun getTop(){
+    fun getTop() {
         repository.getTop()
     }
 
-    fun getUpcoming(){
+    fun getUpcoming() {
         repository.getUpcoming()
     }
 
+    fun getMoviesCast(id: Int) {
+        repository.getMoviesCast(id)
+    }
+
+    fun getSimilarMovies(id: Int) {
+        repository.getSimilarMovies(id)
+    }
+
+    fun getMovieDetails(id: Int) {
+        repository.getMovieDetails(id)
+    }
+
+    fun getPersonDetails(id: Int) {
+        repository.getPersonDetails(id)
+    }
+
+    fun getPersonImages(id: Int) {
+        repository.getPersonImages(id)
+    }
 }

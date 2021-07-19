@@ -97,15 +97,4 @@ class Home : Fragment() {
         }
     }
 
-    /*private fun displayCarousel(){
-        var imageSlider: ImageSlider = binding.carousel
-        var slideModels = ArrayList<SlideModel>()
-
-        slideModels.add(SlideModel(image1,"image 1"))
-        slideModels.add(SlideModel(image2,"image 1"))
-        slideModels.add(SlideModel(image3,"image 1"))
-        slideModels.add(SlideModel(image4,"image 1"))
-        imageSlider.setImageList(slideModels,true)
-    }*/
-
 }

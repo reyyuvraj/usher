@@ -1,11 +1,13 @@
 package com.example.usher.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
@@ -31,8 +33,14 @@ class AdapterTop(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(backdrop+entity.posterPath).into(holder.newsImage)
+        Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
         holder.newsTitle.text = entity.title
+
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("id", itemList[position].id)
+            it.findNavController().navigate(R.id.details, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -57,9 +65,5 @@ class AdapterTop(
     fun setData(element: List<Result>) {
         this.itemList = element
         notifyDataSetChanged()
-    }
-
-    interface OnElementClick {
-        fun onItemClick(article: Result, position: Int)
     }
 }

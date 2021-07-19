@@ -16,10 +16,27 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_home_to_details"
+            app:destination="@id/details" />
     </fragment>
     <fragment
         android:id="@+id/search"
         android:name="com.example.usher.Search"
         android:label="search"
         tools:layout="@layout/search" />
+    <fragment
+        android:id="@+id/details"
+        android:name="com.example.usher.view.fragment.MovieDetails"
+        android:label="details"
+        tools:layout="@layout/details" >
+        <action
+            android:id="@+id/action_details_to_castDetails"
+            app:destination="@id/castDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/castDetails"
+        android:name="com.example.usher.view.fragment.CastDetails"
+        android:label="details_cast"
+        tools:layout="@layout/details_cast" />
 </navigation>

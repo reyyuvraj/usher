@@ -12,21 +12,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
 import com.example.usher.call.MoviesAPI
-import com.example.usher.models.getTrending.Result
+import com.example.usher.models.get_similar_movies.Result
 
-class AdapterTrending(private val context: Context) :
-    RecyclerView.Adapter<AdapterTrending.ViewHolder>() {
+class AdapterMovieSimilar(private val context: Context) :
+    RecyclerView.Adapter<AdapterMovieSimilar.ViewHolder>() {
 
     private var itemList: List<Result> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+        var itemView =
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_view,
                 parent,
                 false
             )
-        )
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -48,6 +48,7 @@ class AdapterTrending(private val context: Context) :
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
         val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
+
     }
 
     fun setData(element: List<Result>) {

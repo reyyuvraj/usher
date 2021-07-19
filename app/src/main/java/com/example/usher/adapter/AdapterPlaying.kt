@@ -1,11 +1,13 @@
 package com.example.usher.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
@@ -18,10 +20,12 @@ class AdapterPlaying(private val context: Context) :
     private var itemList: List<Result> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(
-            R.layout.item_view,
-            parent,
-            false)
+        return ViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_view,
+                parent,
+                false
+            )
         )
     }
 
@@ -29,13 +33,19 @@ class AdapterPlaying(private val context: Context) :
         val entity = itemList[position]
         Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
         holder.newsTitle.text = entity.title
+
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("id", itemList[position].id)
+            it.findNavController().navigate(R.id.details, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
         return itemList.size
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
         val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
     }
