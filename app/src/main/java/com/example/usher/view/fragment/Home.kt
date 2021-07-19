@@ -7,15 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.usher.R
 import com.example.usher.adapter.*
 import com.example.usher.databinding.HomeBinding
+import com.example.usher.models.get_now_playing.Result
 import com.example.usher.viewmodel.ViewModel
 
 
-class Home : Fragment() {
+class Home : Fragment(), AdapterPlaying.OnElementClick {
 
     private lateinit var binding: HomeBinding
     private lateinit var viewModel: ViewModel
@@ -63,7 +65,7 @@ class Home : Fragment() {
 
         adapterTrending = AdapterTrending(requireContext())
         trendingRecyclerView.adapter = adapterTrending
-        adapterPlaying = AdapterPlaying(requireContext())
+        adapterPlaying = AdapterPlaying(requireContext(), this)
         playRecyclerView.adapter = adapterPlaying
         adapterPopular = AdapterPopular(requireContext())
         popularRecyclerView.adapter = adapterPopular
@@ -97,15 +99,11 @@ class Home : Fragment() {
         }
     }
 
-    /*private fun displayCarousel(){
-        var imageSlider: ImageSlider = binding.carousel
-        var slideModels = ArrayList<SlideModel>()
-
-        slideModels.add(SlideModel(image1,"image 1"))
-        slideModels.add(SlideModel(image2,"image 1"))
-        slideModels.add(SlideModel(image3,"image 1"))
-        slideModels.add(SlideModel(image4,"image 1"))
-        imageSlider.setImageList(slideModels,true)
-    }*/
+    override fun onItemClick(item: Result, position: Int) {
+        findNavController().navigate(R.id.details)
+        /* val intent = Intent(requireActivity(),Details::class.java)
+        intent.putExtra("movie_id",item.id)
+        startActivity(intent)*/
+    }
 
 }

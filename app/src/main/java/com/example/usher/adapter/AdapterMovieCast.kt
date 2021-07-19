@@ -9,14 +9,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.R
-import com.example.usher.call.MoviesAPI.Companion.backdrop
+import com.example.usher.call.MoviesAPI
+import com.example.usher.models.get_movie_credits.Cast
 import com.example.usher.models.get_popular_movie.Result
 
+class AdapterMovieCast(private val context: Context):
+    RecyclerView.Adapter<AdapterMovieCast.ViewHolder>() {
 
-class AdapterPopular(private val context: Context) :
-    RecyclerView.Adapter<AdapterPopular.ViewHolder>() {
-
-    private var itemList: List<Result> = emptyList()
+    private var itemList: List<Cast> = emptyList()
+    private var limit: Int = 100
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var itemView =
@@ -30,12 +31,15 @@ class AdapterPopular(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(backdrop+entity.posterPath).into(holder.newsImage)
-        holder.newsTitle.text = entity.title
+        Glide.with(context).load(MoviesAPI.backdrop +entity.profilePath).into(holder.newsImage)
+        holder.newsTitle.text = entity.originalName
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return if (itemList.size>limit)
+            limit
+        else
+            itemList.size
     }
 
     class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -44,7 +48,7 @@ class AdapterPopular(private val context: Context) :
 
     }
 
-    fun setData(element: List<Result>) {
+    fun setData(element: List<Cast>) {
         this.itemList = element
         notifyDataSetChanged()
     }

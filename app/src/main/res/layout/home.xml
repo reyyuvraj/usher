@@ -24,6 +24,18 @@
                 android:orientation="horizontal"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />-->
 
+            <!--<com.synnapps.carouselview.CarouselView
+                android:id="@+id/carousel"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                app:fillColor="@color/white"
+                app:pageColor="#000000"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:autoPlay="true"/>-->
+
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/carousel"
                 android:layout_width="match_parent"
