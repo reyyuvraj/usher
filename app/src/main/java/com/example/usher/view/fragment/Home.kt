@@ -17,7 +17,7 @@ import com.example.usher.models.get_now_playing.Result
 import com.example.usher.viewmodel.ViewModel
 
 
-class Home : Fragment(), AdapterPlaying.OnElementClick {
+class Home : Fragment(){
 
     private lateinit var binding: HomeBinding
     private lateinit var viewModel: ViewModel
@@ -65,7 +65,7 @@ class Home : Fragment(), AdapterPlaying.OnElementClick {
 
         adapterTrending = AdapterTrending(requireContext())
         trendingRecyclerView.adapter = adapterTrending
-        adapterPlaying = AdapterPlaying(requireContext(), this)
+        adapterPlaying = AdapterPlaying(requireContext())
         playRecyclerView.adapter = adapterPlaying
         adapterPopular = AdapterPopular(requireContext())
         popularRecyclerView.adapter = adapterPopular
@@ -97,13 +97,6 @@ class Home : Fragment(), AdapterPlaying.OnElementClick {
         binding.floatingActionButtonSearch.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_home_to_search)
         }
-    }
-
-    override fun onItemClick(item: Result, position: Int) {
-        findNavController().navigate(R.id.details)
-        /* val intent = Intent(requireActivity(),Details::class.java)
-        intent.putExtra("movie_id",item.id)
-        startActivity(intent)*/
     }
 
 }

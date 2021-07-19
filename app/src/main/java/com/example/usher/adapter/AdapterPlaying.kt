@@ -14,8 +14,7 @@ import com.example.usher.R
 import com.example.usher.call.MoviesAPI.Companion.backdrop
 import com.example.usher.models.get_now_playing.Result
 
-class AdapterPlaying(private val context: Context,
-                     private val listener: OnElementClick) :
+class AdapterPlaying(private val context: Context) :
     RecyclerView.Adapter<AdapterPlaying.ViewHolder>() {
 
     private var itemList: List<Result> = emptyList()
@@ -35,29 +34,20 @@ class AdapterPlaying(private val context: Context,
         Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
         holder.newsTitle.text = entity.title
 
-        /*holder.itemView.setOnClickListener{
-            it.findNavController().navigate(R.id.details)
-        }*/
+        holder.itemView.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putInt("id", itemList[position].id)
+            it.findNavController().navigate(R.id.details, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
         return itemList.size
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
         val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(i: View?) {
-            val position = adapterPosition
-            val mov = itemList[position]
-            listener.onItemClick(mov, position)
-        }
     }
 
     fun setData(element: List<Result>) {
@@ -65,7 +55,7 @@ class AdapterPlaying(private val context: Context,
         notifyDataSetChanged()
     }
 
-    fun position(id: Int): Int{
+    fun position(id: Int): Int {
         return id
     }
 

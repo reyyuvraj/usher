@@ -21,6 +21,7 @@ interface MoviesAPI {
         const val apiKey: String = "1878b3b064120b74b4d7cd8c9e155cdf"
         const val backdrop: String = "https://image.tmdb.org/t/p/w500"
         const val movieId: Int = 497698
+        const val personId: Int = 1245
         const val image1: String = "https://image.tmdb.org/t/p/w500/dq18nCTTLpy9PmtzZI6Y2yAgdw5.jpg"
         const val image2: String = "https://image.tmdb.org/t/p/w500/wjQXZTlFM3PVEUmKf1sUajjygqT.jpg"
         const val image3: String = "https://image.tmdb.org/t/p/w500/xXHZeb1yhJvnSHPzZDqee0zfMb6.jpg"
@@ -96,4 +97,20 @@ interface MoviesAPI {
         @Query("api_key")
         api_key: String = apiKey
     ) : Call<SimilarMovies>
+
+    @GET("/3//person/{person_id}")
+    fun getPersonDetails(
+        @Path("movie_id")
+        person_id: Int = personId,
+        @Query("api_key")
+        api_key: String = apiKey
+    )
+
+    @GET("/3//person/{person_id}/images")
+    fun getPersonImages(
+        @Path("movie_id")
+        person_id: Int = personId,
+        @Query("api_key")
+        api_key: String = apiKey
+    )
 }

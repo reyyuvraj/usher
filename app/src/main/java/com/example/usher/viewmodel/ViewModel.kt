@@ -57,15 +57,15 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         repository.getUpcoming()
     }
 
-    fun getMoviesCast(){
-        repository.getMoviesCast()
+    fun getMoviesCast(id: Int){
+        repository.getMoviesCast(id)
     }
 
-    fun getSimilarMovies(){
-        repository.getSimilarMovies()
+    fun getSimilarMovies(id: Int) {
+        repository.getSimilarMovies(id)
     }
 
-    fun getMovieDetails(){
-        repository.getMovieDetails()
+    fun getMovieDetails(id: Int){
+        repository.getMovieDetails(id)
     }
 }

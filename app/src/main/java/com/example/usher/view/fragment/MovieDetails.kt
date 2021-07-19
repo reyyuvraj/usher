@@ -1,6 +1,7 @@
 package com.example.usher.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usher.adapter.AdapterMovieCast
 import com.example.usher.adapter.AdapterMovieSimilar
-import com.example.usher.adapter.AdapterPlaying
 import com.example.usher.call.MoviesAPI
 import com.example.usher.databinding.DetailsBinding
-import com.example.usher.models.get_movie_details.MovieDetails
-import com.example.usher.models.get_now_playing.Result
-import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.viewmodel.ViewModel
 
-class Details : Fragment() {
+class MovieDetails : Fragment() {
 
     private lateinit var adapterMovieCast: AdapterMovieCast
     private lateinit var adapterSimilarMovies: AdapterMovieSimilar
@@ -38,6 +35,9 @@ class Details : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val id: Int = requireArguments().getInt("id")
+        Log.d("MovieId", "onViewCreated: $id")
+
         val castRecyclerView: RecyclerView = binding.cast
         castRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -46,8 +46,9 @@ class Details : Fragment() {
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         viewModel = ViewModelProvider(this).get(ViewModel::class.java)
-        viewModel.getMoviesCast()
-        viewModel.getSimilarMovies()
+        viewModel.getMoviesCast(id)
+        viewModel.getSimilarMovies(id)
+        viewModel.getMovieDetails(id)
 
         adapterMovieCast = AdapterMovieCast(requireContext())
         castRecyclerView.adapter = adapterMovieCast
@@ -55,20 +56,22 @@ class Details : Fragment() {
         similarRecyclerView.adapter = adapterSimilarMovies
 
 
-        viewModel.castData.observe(viewLifecycleOwner,{
+        viewModel.castData.observe(viewLifecycleOwner, {
             adapterMovieCast.setData(it.cast)
         })
 
-        viewModel.similarData.observe(viewLifecycleOwner,{
+        viewModel.similarData.observe(viewLifecycleOwner, {
             adapterSimilarMovies.setData(it.results)
+        })
+
+        viewModel.movieData.observe(viewLifecycleOwner, {
+            binding.contentTitle.text = it.title
+            binding.contentOverview.text = it.overview
+            Glide.with(requireContext()).load(MoviesAPI.backdrop + it.backdropPath)
+                .into(binding.contentImage)
+            binding.voteAverage.text = it.voteAverage.toString()
+            binding.voteCount.text = it.voteCount.toString()
         })
     }
 
-    fun setMovieDetails(item: MovieDetails, position: Int) {
-        binding.contentTitle.text = item.title
-        binding.contentOverview.text = item.overview
-        Glide.with(requireContext()).load(MoviesAPI.backdrop + item.backdropPath).into(binding.contentImage)
-        binding.voteAverage //= item.voteAverage
-        binding.voteCount.text
-    }
 }
