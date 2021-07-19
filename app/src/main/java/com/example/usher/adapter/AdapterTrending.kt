@@ -14,16 +14,18 @@ import com.example.usher.R
 import com.example.usher.call.MoviesAPI
 import com.example.usher.models.getTrending.Result
 
-class AdapterTrending(private val context: Context): RecyclerView.Adapter<AdapterTrending.ViewHolder>() {
+class AdapterTrending(private val context: Context) :
+    RecyclerView.Adapter<AdapterTrending.ViewHolder>() {
 
     private var itemList: List<Result> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-            R.layout.item_view,
-            parent,
-            false)
+                R.layout.item_view,
+                parent,
+                false
+            )
         )
     }
 
@@ -34,7 +36,7 @@ class AdapterTrending(private val context: Context): RecyclerView.Adapter<Adapte
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("id",itemList[position].id)
+            bundle.putInt("id", itemList[position].id)
             it.findNavController().navigate(R.id.details, bundle)
         }
     }
@@ -43,7 +45,7 @@ class AdapterTrending(private val context: Context): RecyclerView.Adapter<Adapte
         return itemList.size
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
         val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
     }

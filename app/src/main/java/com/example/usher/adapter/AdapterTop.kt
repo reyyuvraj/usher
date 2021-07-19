@@ -33,12 +33,12 @@ class AdapterTop(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(backdrop+entity.posterPath).into(holder.newsImage)
+        Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
         holder.newsTitle.text = entity.title
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("id",itemList[position].id)
+            bundle.putInt("id", itemList[position].id)
             it.findNavController().navigate(R.id.details, bundle)
         }
     }
@@ -65,9 +65,5 @@ class AdapterTop(
     fun setData(element: List<Result>) {
         this.itemList = element
         notifyDataSetChanged()
-    }
-
-    interface OnElementClick {
-        fun onItemClick(article: Result, position: Int)
     }
 }

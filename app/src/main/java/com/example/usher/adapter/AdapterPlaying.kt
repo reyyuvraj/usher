@@ -54,12 +54,4 @@ class AdapterPlaying(private val context: Context) :
         this.itemList = element
         notifyDataSetChanged()
     }
-
-    fun position(id: Int): Int {
-        return id
-    }
-
-    interface OnElementClick {
-        fun onItemClick(item: Result, position: Int)
-    }
 }

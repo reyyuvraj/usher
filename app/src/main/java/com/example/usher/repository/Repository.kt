@@ -10,6 +10,8 @@ import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_movie_credits.MovieCredits
 import com.example.usher.models.get_movie_details.MovieDetails
 import com.example.usher.models.get_now_playing.NowPlaying
+import com.example.usher.models.get_person_details.PersonDetails
+import com.example.usher.models.get_person_images.PersonImages
 import com.example.usher.models.get_popular_movie.Popular
 import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.models.get_top_rated_movies.TopRated
@@ -29,6 +31,8 @@ class Repository constructor(val application: Application) {
     val moviesCast = MutableLiveData<MovieCredits>()
     val similarMovies = MutableLiveData<SimilarMovies>()
     val movieDetails = MutableLiveData<MovieDetails>()
+    val personDetails = MutableLiveData<PersonDetails>()
+    val personImages = MutableLiveData<PersonImages>()
 
     fun getTrending() {
 
@@ -200,6 +204,48 @@ class Repository constructor(val application: Application) {
                 Log.d("detailsResponse", "onResponse: $response")
                 val play = response.body()
                 movieDetails.value = play
+            }
+        })
+    }
+
+    fun getPersonDetails(id: Int) {
+
+        val retrofitService = RetrofitInstance.getClient()
+        val callAPI = retrofitService.getPersonDetails(id)
+
+        callAPI.enqueue(object : Callback<PersonDetails> {
+            override fun onFailure(call: Call<PersonDetails>, t: Throwable) {
+                //Log.d("Repo", "onFailure: ${t.message}")
+                Toast.makeText(application, "Error", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<PersonDetails>, response: Response<PersonDetails>) {
+                Log.d("detailsResponse", "onResponse: $response")
+                val play = response.body()
+                personDetails.value = play
+            }
+        })
+    }
+
+    fun getPersonImages(id: Int) {
+
+        val retrofitService = RetrofitInstance.getClient()
+        val callAPI = retrofitService.getPersonImages(id)
+
+        callAPI.enqueue(object : Callback<PersonImages> {
+            override fun onFailure(call: Call<PersonImages>, t: Throwable) {
+                //Log.d("Repo", "onFailure: ${t.message}")
+                Toast.makeText(application, "Error", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<PersonImages>, response: Response<PersonImages>) {
+                Log.d("trending", "onResponse: $response")
+                val play = response.body()
+                Log.d("trending", "onResponse: $play")
+                if (play != null) {
+                    val pop = play.profiles
+                    personImages.value = PersonImages(pop)
+                }
             }
         })
     }

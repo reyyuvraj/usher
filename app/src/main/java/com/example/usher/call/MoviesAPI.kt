@@ -5,6 +5,8 @@ import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_movie_credits.MovieCredits
 import com.example.usher.models.get_movie_details.MovieDetails
 import com.example.usher.models.get_now_playing.NowPlaying
+import com.example.usher.models.get_person_details.PersonDetails
+import com.example.usher.models.get_person_images.PersonImages
 import com.example.usher.models.get_popular_movie.Popular
 import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.models.get_top_rated_movies.TopRated
@@ -22,10 +24,6 @@ interface MoviesAPI {
         const val backdrop: String = "https://image.tmdb.org/t/p/w500"
         const val movieId: Int = 497698
         const val personId: Int = 1245
-        const val image1: String = "https://image.tmdb.org/t/p/w500/dq18nCTTLpy9PmtzZI6Y2yAgdw5.jpg"
-        const val image2: String = "https://image.tmdb.org/t/p/w500/wjQXZTlFM3PVEUmKf1sUajjygqT.jpg"
-        const val image3: String = "https://image.tmdb.org/t/p/w500/xXHZeb1yhJvnSHPzZDqee0zfMb6.jpg"
-        const val image4: String = "https://image.tmdb.org/t/p/w500/z2UtGA1WggESspi6KOXeo66lvLx.jpg"
     }
 
     @GET("/3/trending/all/week")
@@ -100,17 +98,17 @@ interface MoviesAPI {
 
     @GET("/3//person/{person_id}")
     fun getPersonDetails(
-        @Path("movie_id")
+        @Path("person_id")
         person_id: Int = personId,
         @Query("api_key")
         api_key: String = apiKey
-    )
+    ) : Call<PersonDetails>
 
     @GET("/3//person/{person_id}/images")
     fun getPersonImages(
-        @Path("movie_id")
+        @Path("person_id")
         person_id: Int = personId,
         @Query("api_key")
         api_key: String = apiKey
-    )
+    ) : Call<PersonImages>
 }

@@ -7,17 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.usher.R
 import com.example.usher.adapter.*
 import com.example.usher.databinding.HomeBinding
-import com.example.usher.models.get_now_playing.Result
 import com.example.usher.viewmodel.ViewModel
 
 
-class Home : Fragment(){
+class Home : Fragment() {
 
     private lateinit var binding: HomeBinding
     private lateinit var viewModel: ViewModel

@@ -31,7 +31,7 @@ class AdapterMovieSimilar(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(MoviesAPI.backdrop +entity.posterPath).into(holder.newsImage)
+        Glide.with(context).load(MoviesAPI.backdrop + entity.posterPath).into(holder.newsImage)
         holder.newsTitle.text = entity.title
 
         holder.itemView.setOnClickListener {
@@ -45,7 +45,7 @@ class AdapterMovieSimilar(private val context: Context) :
         return itemList.size
     }
 
-    class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
         val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
 
@@ -54,9 +54,5 @@ class AdapterMovieSimilar(private val context: Context) :
     fun setData(element: List<Result>) {
         this.itemList = element
         notifyDataSetChanged()
-    }
-
-    interface OnElementClick {
-        fun onItemClick(article: Result, position: Int)
     }
 }

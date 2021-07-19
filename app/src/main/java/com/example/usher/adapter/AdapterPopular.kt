@@ -37,7 +37,7 @@ class AdapterPopular(private val context: Context) :
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("id",itemList[position].id)
+            bundle.putInt("id", itemList[position].id)
             it.findNavController().navigate(R.id.details, bundle)
         }
     }
@@ -55,9 +55,5 @@ class AdapterPopular(private val context: Context) :
     fun setData(element: List<Result>) {
         this.itemList = element
         notifyDataSetChanged()
-    }
-
-    interface OnElementClick {
-        fun onItemClick(article: Result, position: Int)
     }
 }

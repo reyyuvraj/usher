@@ -15,10 +15,9 @@ import com.example.usher.call.MoviesAPI.Companion.backdrop
 import com.example.usher.models.get_upcoming.Result
 
 
-class AdapterUpcoming(
-    private val context: Context/*,
-    private val listener: AdapterUpcoming.OnElementClick*/
-) : RecyclerView.Adapter<AdapterUpcoming.ViewHolder>() {
+class AdapterUpcoming(private val context: Context) :
+    RecyclerView.Adapter<AdapterUpcoming.ViewHolder>() {
+
     private var itemList: List<Result> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -33,12 +32,12 @@ class AdapterUpcoming(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(backdrop+entity.posterPath).into(holder.newsImage)
+        Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
         holder.newsTitle.text = entity.title
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
-            bundle.putInt("id",itemList[position].id)
+            bundle.putInt("id", itemList[position].id)
             it.findNavController().navigate(R.id.details, bundle)
         }
     }
@@ -47,28 +46,13 @@ class AdapterUpcoming(
         return itemList.size
     }
 
-    inner class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    inner class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
         val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-
-        override fun onClick(i: View?) {
-            val position = adapterPosition
-            val mov = itemList[position]
-            //listener.onItemClick(mov, position)
-        }
     }
 
     fun setData(element: List<Result>) {
         this.itemList = element
         notifyDataSetChanged()
-    }
-
-    interface OnElementClick {
-        fun onItemClick(article: Result, position: Int)
     }
 }

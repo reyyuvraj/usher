@@ -46,8 +46,4 @@ class AdapterLatest(private val context: Context) :
         this.itemList = element
         notifyDataSetChanged()
     }
-
-    interface OnElementClick {
-        fun onItemClick(article: Latest, position: Int)
-    }
 }

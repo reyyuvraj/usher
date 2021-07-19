@@ -29,5 +29,14 @@
         android:id="@+id/details"
         android:name="com.example.usher.view.fragment.MovieDetails"
         android:label="details"
-        tools:layout="@layout/details" />
+        tools:layout="@layout/details" >
+        <action
+            android:id="@+id/action_details_to_castDetails"
+            app:destination="@id/castDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/castDetails"
+        android:name="com.example.usher.view.fragment.CastDetails"
+        android:label="details_cast"
+        tools:layout="@layout/details_cast" />
 </navigation>
