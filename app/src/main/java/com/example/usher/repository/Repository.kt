@@ -16,6 +16,7 @@ import com.example.usher.models.get_popular_movie.Popular
 import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.models.get_top_rated_movies.TopRated
 import com.example.usher.models.get_upcoming.Upcoming
+import com.example.usher.models.multi_search.SearchResult
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +29,7 @@ class Repository constructor(val application: Application) {
     val upcomingData = MutableLiveData<Upcoming>()
     val trendingData = MutableLiveData<Trending>()
     val latestData = MutableLiveData<List<Latest>>()
+    val searchData = MutableLiveData<SearchResult>()
     val moviesCast = MutableLiveData<MovieCredits>()
     val similarMovies = MutableLiveData<SimilarMovies>()
     val movieDetails = MutableLiveData<MovieDetails>()
@@ -142,6 +144,34 @@ class Repository constructor(val application: Application) {
                 }
             }
         })
+    }
+
+
+    fun multiSearch(query: String) {
+        val retrofitService = RetrofitInstance.getClient()
+        val callAPI = retrofitService.multiSearch(query)
+
+        callAPI.enqueue(
+            object : Callback<SearchResult> {
+                override fun onResponse(
+                    call: Call<SearchResult>,
+                    response: Response<SearchResult>
+                ) {
+                    Log.d("searchedResult", "onResponse: $response")
+                    val play = response.body()
+                    if (play != null) {
+                        val pop = play.results
+                        searchData.value = SearchResult(pop)
+                    }
+                }
+
+                override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+                    Log.d("onFailure", "onFailure: ${t.message}")
+                    Toast.makeText(application, "Error", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        )
     }
 
     fun getMoviesCast(id: Int) {

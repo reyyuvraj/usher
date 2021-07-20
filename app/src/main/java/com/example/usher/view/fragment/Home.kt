@@ -1,18 +1,30 @@
 package com.example.usher.view.fragment
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 import com.example.usher.R
 import com.example.usher.adapter.*
+import com.example.usher.database.DbViewModel
+import com.example.usher.database.ResultData
 import com.example.usher.databinding.HomeBinding
+import com.example.usher.models.get_popular_movie.Result
 import com.example.usher.viewmodel.ViewModel
+import kotlinx.coroutines.*
 
 
 class Home : Fragment() {
@@ -25,6 +37,7 @@ class Home : Fragment() {
     private lateinit var adapterPopular: AdapterPopular
     private lateinit var adapterTop: AdapterTop
     private lateinit var adapterUpcoming: AdapterUpcoming
+    private lateinit var dbViewModel: DbViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,6 +95,8 @@ class Home : Fragment() {
 
         viewModel.popularData.observe(viewLifecycleOwner, {
             adapterPopular.setData(it.results)
+            var a = it.results
+            Log.d("dekh",a.toString())
         })
 
         viewModel.topData.observe(viewLifecycleOwner, {
@@ -96,5 +111,9 @@ class Home : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_home_to_search)
         }
     }
+
+
+
+
 
 }

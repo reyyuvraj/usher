@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/search"
-        android:name="com.example.usher.Search"
+        android:name="com.example.usher.view.fragment.Search"
         android:label="search"
         tools:layout="@layout/search" />
     <fragment

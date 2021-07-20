@@ -11,7 +11,9 @@ import com.example.usher.models.get_popular_movie.Popular
 import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.models.get_top_rated_movies.TopRated
 import com.example.usher.models.get_upcoming.Upcoming
+import com.example.usher.models.multi_search.SearchResult
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -71,6 +73,20 @@ interface MoviesAPI {
         @Query("page")
         page: Int = 1
     ): Call<Upcoming>
+
+    @GET("/3/search/multi")
+    fun multiSearch(
+        @Query("query")
+        query: String = "",
+        @Query("api_key")
+        api_key: String = apiKey,
+        @Query("language")
+        language: String = "en-US",
+        @Query("page")
+        page: Int = 1,
+    ): Call<SearchResult>
+
+
 
     @GET("/3/movie/{movie_id}")
     fun getMovieDetails(
