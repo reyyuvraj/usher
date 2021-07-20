@@ -37,7 +37,7 @@ class AdapterMovieSimilar(private val context: Context) :
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
             bundle.putInt("id", itemList[position].id)
-            it.findNavController().navigate(R.id.details, bundle)
+            it.findNavController().navigate(R.id.action_details_self, bundle)
         }
     }
 

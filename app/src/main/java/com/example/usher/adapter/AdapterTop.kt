@@ -39,7 +39,7 @@ class AdapterTop(
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
             bundle.putInt("id", itemList[position].id)
-            it.findNavController().navigate(R.id.details, bundle)
+            it.findNavController().navigate(R.id.action_home_to_details, bundle)
         }
     }
 

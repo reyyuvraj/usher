@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ class CastDetails : Fragment() {
     private lateinit var adapterCastImages: AdapterCastImages
     private lateinit var viewModel: ViewModel
     private lateinit var binding: DetailsCastBinding
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,9 +50,12 @@ class CastDetails : Fragment() {
         castImagesRecyclerView.adapter = adapterCastImages
 
         viewModel.personData.observe(viewLifecycleOwner, {
+            progressBar = binding.castProgressBar
+            progressBar.visibility = View.GONE
             Glide.with(requireContext()).load(MoviesAPI.backdrop + it.profilePath)
                 .into(binding.castImage)
             binding.castName.text = it.name
+            binding.castOverview.text = it.biography
         })
 
         viewModel.personImagesData.observe(viewLifecycleOwner, {

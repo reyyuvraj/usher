@@ -112,8 +112,6 @@
                 android:background="@color/teal_200"
                 android:clickable="false">
 
-
-
             </com.google.android.material.card.MaterialCardView>-->
 
             <androidx.recyclerview.widget.RecyclerView
@@ -188,7 +186,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="@color/yellow"
         android:clickable="true"
         android:focusable="true"
         android:tint="@color/white"
