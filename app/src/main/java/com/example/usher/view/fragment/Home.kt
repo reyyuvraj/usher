@@ -19,11 +19,10 @@ import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.example.usher.R
 import com.example.usher.adapter.*
-import com.example.usher.database.DbViewModel
-import com.example.usher.database.ResultData
 import com.example.usher.databinding.HomeBinding
-import com.example.usher.models.get_popular_movie.Result
+import com.example.usher.util.InternetConnectivity
 import com.example.usher.viewmodel.ViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 
 
@@ -37,7 +36,6 @@ class Home : Fragment() {
     private lateinit var adapterPopular: AdapterPopular
     private lateinit var adapterTop: AdapterTop
     private lateinit var adapterUpcoming: AdapterUpcoming
-    private lateinit var dbViewModel: DbViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,7 +94,7 @@ class Home : Fragment() {
         viewModel.popularData.observe(viewLifecycleOwner, {
             adapterPopular.setData(it.results)
             var a = it.results
-            Log.d("dekh",a.toString())
+            Log.d("dekh", a.toString())
         })
 
         viewModel.topData.observe(viewLifecycleOwner, {
@@ -108,12 +106,13 @@ class Home : Fragment() {
         })
 
         binding.floatingActionButtonSearch.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_home_to_search)
+            if (!InternetConnectivity.isNetworkAvailable(requireContext())!!)
+                Snackbar.make(view, "Please check your Internet connection!!", Snackbar.LENGTH_SHORT)
+                    .show()
+            else
+                Navigation.findNavController(view).navigate(R.id.action_home_to_search)
         }
     }
-
-
-
 
 
 }

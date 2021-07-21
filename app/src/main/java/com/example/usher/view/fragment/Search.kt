@@ -36,7 +36,7 @@ class Search : Fragment(), SearchView.OnQueryTextListener {
 
         val searchRecyclerView = binding.rvSearchResults
         searchRecyclerView.layoutManager =
-            GridLayoutManager(requireContext(),2)
+            GridLayoutManager(requireContext(), 2)
         adapterSearch = AdapterSearch(requireContext())
         searchRecyclerView.adapter = adapterSearch
 
@@ -54,7 +54,10 @@ class Search : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        binding.pbSearch.visibility = ProgressBar.VISIBLE
+        if (newText.toString().isEmpty())
+            binding.pbSearch.visibility = ProgressBar.GONE
+        else
+            binding.pbSearch.visibility = ProgressBar.VISIBLE
         viewModel.searchData(newText.toString())
         return false
     }

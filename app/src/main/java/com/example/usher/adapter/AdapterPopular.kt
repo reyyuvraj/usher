@@ -19,7 +19,6 @@ import coil.request.SuccessResult
 import com.bumptech.glide.Glide
 import com.example.usher.R
 import com.example.usher.call.MoviesAPI.Companion.backdrop
-import com.example.usher.database.ResultData
 import com.example.usher.models.get_popular_movie.Result
 import kotlinx.coroutines.*
 
@@ -44,7 +43,7 @@ class AdapterPopular(private val context: Context) :
         val url = backdrop+entity.posterPath
         Glide.with(context).load(url).into(holder.newsImage)
         holder.newsTitle.text = entity.title
-        addDataDataBase(entity.id,url,entity.posterPath,entity.title)
+//        addDataDataBase(entity.id,url,entity.posterPath,entity.title)
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
@@ -63,22 +62,22 @@ class AdapterPopular(private val context: Context) :
         val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
 
     }
-    fun addDataDataBase(id : Int, url: String, posterpath : String,title: String){
-        val scope = CoroutineScope(CoroutineName("AddDataScope"))
-        scope.launch {
-            val result : ResultData = ResultData(id,posterpath,title,makeBmap(url))
-        }
-        scope.cancel()
-        Log.d("dekh","cancellled")
-    }
-    private suspend fun makeBmap(url: String) : Bitmap {
-        val loading = ImageLoader(context)
-        val request = ImageRequest.Builder(context)
-            .data(url)
-            .build()
-        var result  = (loading.execute(request) as SuccessResult).drawable
-        return (result as BitmapDrawable).bitmap
-    }
+//    fun addDataDataBase(id : Int, url: String, posterpath : String,title: String){
+//        val scope = CoroutineScope(CoroutineName("AddDataScope"))
+//        scope.launch {
+//            val result : ResultData = ResultData(id,posterpath,title,makeBmap(url))
+//        }
+//        scope.cancel()
+//        Log.d("dekh","cancellled")
+//    }
+//    private suspend fun makeBmap(url: String) : Bitmap {
+//        val loading = ImageLoader(context)
+//        val request = ImageRequest.Builder(context)
+//            .data(url)
+//            .build()
+//        var result  = (loading.execute(request) as SuccessResult).drawable
+//        return (result as BitmapDrawable).bitmap
+//    }
     fun setData(element: List<Result>) {
         this.itemList = element
         notifyDataSetChanged()
