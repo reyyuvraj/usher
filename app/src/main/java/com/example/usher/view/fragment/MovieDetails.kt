@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -77,6 +78,14 @@ class MovieDetails : Fragment() {
             binding.voteAverage.text = it.voteAverage.toString()
             binding.voteCount.text = it.voteCount.toString()
         })
+
+        binding.voteCard.setOnClickListener {
+            Toast.makeText(requireContext(),"Votes",Toast.LENGTH_SHORT).show()
+        }
+
+        binding.ratingCard.setOnClickListener {
+            Toast.makeText(requireContext(),"Rating",Toast.LENGTH_SHORT).show()
+        }
 
         binding.contentOverviewCard.setOnClickListener {
             TransitionManager.beginDelayedTransition(binding.contentOverviewCard);

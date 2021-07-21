@@ -65,9 +65,12 @@
                 android:weightSum="2">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/ratingCard"
                     android:layout_width="match_parent"
                     android:layout_height="72dp"
                     android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:cardBackgroundColor="@color/nero">
 
                     <LinearLayout
@@ -98,9 +101,12 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/voteCard"
                     android:layout_width="match_parent"
                     android:layout_height="72dp"
                     android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
                     app:cardBackgroundColor="@color/nero">
 
                     <LinearLayout
