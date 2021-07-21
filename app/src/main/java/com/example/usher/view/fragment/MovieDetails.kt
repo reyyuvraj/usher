@@ -1,6 +1,7 @@
 package com.example.usher.view.fragment
 
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -76,6 +77,11 @@ class MovieDetails : Fragment() {
             binding.voteAverage.text = it.voteAverage.toString()
             binding.voteCount.text = it.voteCount.toString()
         })
+
+        binding.contentOverviewCard.setOnClickListener {
+            TransitionManager.beginDelayedTransition(binding.contentOverviewCard);
+            binding.contentOverview.visibility = View.VISIBLE
+        }
     }
 
 }

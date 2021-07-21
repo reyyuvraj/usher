@@ -20,7 +20,7 @@ class AdapterMovieSimilar(private val context: Context) :
     private var itemList: List<Result> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var itemView =
+        val itemView =
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_view,
                 parent,

@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:padding="15dp">
 
@@ -39,8 +39,8 @@
             android:id="@+id/linearVertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="15dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contentTitle">
@@ -78,8 +78,8 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_marginTop="10dp"
                             android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
                             android:src="@drawable/star" />
 
 
@@ -140,25 +140,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:cardCornerRadius="15dp"
+            android:animateLayoutChanges="true"
+            android:clickable="true"
+            android:focusable="true"
             app:cardBackgroundColor="@color/nero"
+            app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearVertical">
 
-            <TextView
-                android:id="@+id/contentOverview"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:textColor="@color/white"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="left"
-                android:maxLines="3"
-                android:padding="5dp"
-                android:text="sampleText"
-                android:textSize="14sp"
-                tools:ignore="HardcodedText" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Overview"
+                    android:padding="5dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:gravity="left"/>
+
+                <TextView
+                    android:id="@+id/contentOverview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="left"
+                    android:visibility="gone"
+                    android:padding="5dp"
+                    android:text="sampleText"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 

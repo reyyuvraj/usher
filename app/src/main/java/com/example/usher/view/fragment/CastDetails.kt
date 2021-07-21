@@ -1,6 +1,7 @@
 package com.example.usher.view.fragment
 
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -62,5 +63,10 @@ class CastDetails : Fragment() {
             Log.d("personImages", "onViewCreated: $viewModel")
             adapterCastImages.setData(it.profiles)
         })
+
+        binding.castOverviewCard.setOnClickListener {
+            TransitionManager.beginDelayedTransition(binding.castOverviewCard);
+            binding.castOverview.visibility = View.VISIBLE
+        }
     }
 }

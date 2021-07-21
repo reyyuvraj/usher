@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
     android:background="@color/black"
+    android:padding="5dp"
     tools:context=".view.fragment.CastDetails">
 
     <ProgressBar
@@ -23,12 +23,12 @@
         android:id="@+id/castNameCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="15dp"
+        app:cardBackgroundColor="@color/nero"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/nero">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,10 +39,10 @@
                 android:id="@+id/castName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SAMPLE NAME"
                 android:padding="5dp"
-                android:textSize="24sp"
+                android:text="SAMPLE NAME"
                 android:textColor="@color/white"
+                android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,9 +54,9 @@
         android:id="@+id/castImageCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         app:cardBackgroundColor="@color/nero"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/castNameCard">
 
@@ -72,12 +72,14 @@
         android:id="@+id/castOverviewCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardBackgroundColor="@color/nero"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/castImageCard"
-        app:cardBackgroundColor="@color/nero">
+        app:layout_constraintTop_toBottomOf="@+id/castImageCard">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,16 +87,23 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Biography"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
                 android:id="@+id/castOverview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:maxLines="3"
-                android:ellipsize="end"
-                android:text="overview"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="start"
                 android:padding="5dp"
+                android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textColor="@color/white" />
+                android:visibility="gone" />
 
         </LinearLayout>
 
