@@ -27,7 +27,7 @@ class Repository constructor(val application: Application) {
     val topData = MutableLiveData<TopRated>()
     val upcomingData = MutableLiveData<Upcoming>()
     val trendingData = MutableLiveData<Trending>()
-    val latestData = MutableLiveData<List<Latest>>()
+    val latestData = MutableLiveData<Latest>()
     val moviesCast = MutableLiveData<MovieCredits>()
     val similarMovies = MutableLiveData<SimilarMovies>()
     val movieDetails = MutableLiveData<MovieDetails>()
@@ -52,6 +52,25 @@ class Repository constructor(val application: Application) {
                     val pop = play.results
                     trendingData.value = Trending(pop)
                 }
+            }
+        })
+    }
+
+    fun getLatest() {
+
+        val retrofitService = RetrofitInstance.getClient()
+        val callAPI = retrofitService.getLatest()
+
+        callAPI.enqueue(object : Callback<Latest> {
+            override fun onFailure(call: Call<Latest>, t: Throwable) {
+                //Log.d("Repo", "onFailure: ${t.message}")
+                Toast.makeText(application, "Error", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<Latest>, response: Response<Latest>) {
+                Log.d("detailsResponse", "onResponse: $response")
+                val play = response.body()
+                latestData.value = play
             }
         })
     }

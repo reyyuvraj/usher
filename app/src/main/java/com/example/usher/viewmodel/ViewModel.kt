@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.usher.models.getTrending.Trending
+import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_movie_credits.MovieCredits
 import com.example.usher.models.get_movie_details.MovieDetails
 import com.example.usher.models.get_now_playing.NowPlaying
@@ -17,6 +18,7 @@ import com.example.usher.repository.Repository
 
 class ViewModel(application: Application) : AndroidViewModel(application) {
 
+    val latestData: LiveData<Latest>
     val playingData: LiveData<NowPlaying>
     val popularData: LiveData<Popular>
     val topData: LiveData<TopRated>
@@ -31,6 +33,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = Repository(application)
 
     init {
+        this.latestData = repository.latestData
         this.playingData = repository.playingData
         this.popularData = repository.popularData
         this.topData = repository.topData
@@ -41,6 +44,10 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         this.movieData = repository.movieDetails
         this.personData = repository.personDetails
         this.personImagesData = repository.personImages
+    }
+
+    fun getLatest() {
+        repository.getLatest()
     }
 
     fun getTrending() {

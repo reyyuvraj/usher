@@ -18,6 +18,7 @@ import com.example.usher.adapter.AdapterMovieSimilar
 import com.example.usher.call.MoviesAPI
 import com.example.usher.databinding.DetailsBinding
 import com.example.usher.viewmodel.ViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class MovieDetails : Fragment() {
 
@@ -79,12 +80,20 @@ class MovieDetails : Fragment() {
             binding.voteCount.text = it.voteCount.toString()
         })
 
-        binding.voteCard.setOnClickListener {
-            Toast.makeText(requireContext(),"Votes",Toast.LENGTH_SHORT).show()
+        binding.voteCard.setOnLongClickListener {
+            val snackBar: Snackbar =
+                Snackbar.make(it, "Votes", Snackbar.LENGTH_SHORT)
+            snackBar.animationMode = Snackbar.ANIMATION_MODE_SLIDE
+            snackBar.show()
+            return@setOnLongClickListener true
         }
 
-        binding.ratingCard.setOnClickListener {
-            Toast.makeText(requireContext(),"Rating",Toast.LENGTH_SHORT).show()
+        binding.ratingCard.setOnLongClickListener {
+            val snackBar: Snackbar =
+                Snackbar.make(it, "Rating", Snackbar.LENGTH_SHORT)
+            snackBar.animationMode = Snackbar.ANIMATION_MODE_SLIDE
+            snackBar.show()
+            return@setOnLongClickListener true
         }
 
         binding.contentOverviewCard.setOnClickListener {
