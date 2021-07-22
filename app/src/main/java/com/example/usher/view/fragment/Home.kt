@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.usher.R
 import com.example.usher.adapter.*
 import com.example.usher.databinding.HomeBinding
+import com.example.usher.models.get_upcoming.Result
 import com.example.usher.util.InternetConnectivity
 import com.example.usher.viewmodel.ViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -97,7 +98,7 @@ class Home : Fragment() {
             Log.d("upcoming", "onViewCreated: ${it.results} ")
             adapterUpcoming.setData(it.results)
             //the code below is for carousel image display
-            val adapter = AdapterCarousel(it.results, requireContext())
+            val adapter = AdapterCarousel(it.results as ArrayList<Result>, requireContext())
             binding.carousel.adapter = adapter
         })
 
