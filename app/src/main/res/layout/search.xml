@@ -1,57 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
-    tools:context=".Search">
+    android:padding="10dp"
+    tools:context=".view.fragment.Search">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:background="@color/white"
-        android:transitionName="toolSearch"
-        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-        app:layout_constraintTop_toTopOf="parent">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/search_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp"
-            app:contentInsetRight="0dp"
-            app:contentInsetEnd="0dp"
-            app:contentInsetEndWithActions="0dp"
-            app:titleMarginStart="0dp">
+   <androidx.appcompat.widget.SearchView
+       android:theme="@style/ThemeOverlay.SearchView"
+       android:id="@+id/sv_search_View"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@drawable/custom_search"
+       android:backgroundTint="@color/nero"
+       app:searchIcon="@drawable/ic_search"
+       android:elevation="100dp"/>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp">
+   <ProgressBar
+       android:layout_marginTop="10dp"
+       android:id="@+id/pb_search"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:visibility="gone"
+       android:layout_below="@+id/sv_search_View"/>
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_view"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"/>
-                <Button
-                    android:id="@+id/search_type_button"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="movie"
-                    tools:ignore="HardcodedText" />
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/rv_search_results"
+       android:layout_marginTop="10dp"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@id/sv_search_View"/>
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
