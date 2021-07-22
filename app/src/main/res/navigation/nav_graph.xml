@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/details"
         android:name="com.example.usher.view.fragment.MovieDetails"
-        android:label="details"
+        android:label="Movie Details"
         tools:layout="@layout/details">
         <action
             android:id="@+id/action_details_to_castDetails"
@@ -52,6 +52,6 @@
     <fragment
         android:id="@+id/castDetails"
         android:name="com.example.usher.view.fragment.CastDetails"
-        android:label="details_cast"
+        android:label="Cast Details"
         tools:layout="@layout/details_cast" />
 </navigation>

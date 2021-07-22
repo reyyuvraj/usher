@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -57,6 +58,8 @@ class CastDetails : Fragment() {
                 .into(binding.castImage)
             binding.castName.text = it.name
             binding.castOverview.text = it.biography
+
+            (activity as AppCompatActivity?)!!.supportActionBar!!.title = it.name
         })
 
         viewModel.personImagesData.observe(viewLifecycleOwner, {

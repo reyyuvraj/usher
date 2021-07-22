@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -77,6 +78,8 @@ class MovieDetails : Fragment() {
                 .into(binding.contentImage)
             binding.voteAverage.text = it.voteAverage.toString()
             binding.voteCount.text = it.voteCount.toString()
+
+            (activity as AppCompatActivity?)!!.supportActionBar!!.title = it.title
         })
 
         binding.voteCard.setOnClickListener {
@@ -88,7 +91,7 @@ class MovieDetails : Fragment() {
         }
 
         binding.contentOverviewCard.setOnClickListener {
-            TransitionManager.beginDelayedTransition(binding.contentOverviewCard);
+            TransitionManager.beginDelayedTransition(binding.contentOverviewCard)
             binding.contentOverview.visibility = View.VISIBLE
         }
     }
