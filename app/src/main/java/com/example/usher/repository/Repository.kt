@@ -17,6 +17,7 @@ import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.models.get_top_rated_movies.TopRated
 import com.example.usher.models.get_upcoming.Upcoming
 import retrofit2.Call
+import com.example.usher.models.multi_search.SearchResult
 import retrofit2.Callback
 import retrofit2.Response
 
@@ -28,6 +29,7 @@ class Repository constructor(val application: Application) {
     val upcomingData = MutableLiveData<Upcoming>()
     val trendingData = MutableLiveData<Trending>()
     val latestData = MutableLiveData<Latest>()
+    val searchData = MutableLiveData<SearchResult>()
     val moviesCast = MutableLiveData<MovieCredits>()
     val similarMovies = MutableLiveData<SimilarMovies>()
     val movieDetails = MutableLiveData<MovieDetails>()
@@ -36,7 +38,7 @@ class Repository constructor(val application: Application) {
 
     fun getTrending() {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getTrending()
 
         callAPI.enqueue(object : Callback<Trending> {
@@ -58,7 +60,7 @@ class Repository constructor(val application: Application) {
 
     fun getLatest() {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getLatest()
 
         callAPI.enqueue(object : Callback<Latest> {
@@ -77,7 +79,7 @@ class Repository constructor(val application: Application) {
 
     fun getPlaying() {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getNowPlaying()
 
         callAPI.enqueue(object : Callback<NowPlaying> {
@@ -101,7 +103,7 @@ class Repository constructor(val application: Application) {
 
     fun getPopular() {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getPopularMovies()
 
         callAPI.enqueue(object : Callback<Popular> {
@@ -122,7 +124,7 @@ class Repository constructor(val application: Application) {
 
     fun getTop() {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getTopRated()
 
         callAPI.enqueue(object : Callback<TopRated> {
@@ -143,7 +145,7 @@ class Repository constructor(val application: Application) {
 
     fun getUpcoming() {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getUpcoming()
 
         callAPI.enqueue(object : Callback<Upcoming> {
@@ -163,9 +165,37 @@ class Repository constructor(val application: Application) {
         })
     }
 
+
+    fun multiSearch(query: String) {
+        val retrofitService = RetrofitInstance.getClient(application)
+        val callAPI = retrofitService.multiSearch(query)
+
+        callAPI.enqueue(
+            object : Callback<SearchResult> {
+                override fun onResponse(
+                    call: Call<SearchResult>,
+                    response: Response<SearchResult>
+                ) {
+                    Log.d("searchedResult", "onResponse: $response")
+                    val play = response.body()
+                    if (play != null) {
+                        val pop = play.results
+                        searchData.value = SearchResult(pop)
+                    }
+                }
+
+                override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+                    Log.d("onFailure", "onFailure: ${t.message}")
+                    Toast.makeText(application, "Error", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        )
+    }
+
     fun getMoviesCast(id: Int) {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getMovieCredits(id)
 
         callAPI.enqueue(object : Callback<MovieCredits> {
@@ -187,7 +217,7 @@ class Repository constructor(val application: Application) {
 
     fun getSimilarMovies(id: Int) {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getSimilarMovies(id)
 
         callAPI.enqueue(object : Callback<SimilarMovies> {
@@ -210,7 +240,7 @@ class Repository constructor(val application: Application) {
 
     fun getMovieDetails(id: Int) {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getMovieDetails(id)
 
         callAPI.enqueue(object : Callback<MovieDetails> {
@@ -229,7 +259,7 @@ class Repository constructor(val application: Application) {
 
     fun getPersonDetails(id: Int) {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getPersonDetails(id)
 
         callAPI.enqueue(object : Callback<PersonDetails> {
@@ -248,7 +278,7 @@ class Repository constructor(val application: Application) {
 
     fun getPersonImages(id: Int) {
 
-        val retrofitService = RetrofitInstance.getClient()
+        val retrofitService = RetrofitInstance.getClient(application)
         val callAPI = retrofitService.getPersonImages(id)
 
         callAPI.enqueue(object : Callback<PersonImages> {
