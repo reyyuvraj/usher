@@ -16,13 +16,14 @@ import com.example.usher.models.get_popular_movie.Popular
 import com.example.usher.models.get_similar_movies.SimilarMovies
 import com.example.usher.models.get_top_rated_movies.TopRated
 import com.example.usher.models.get_upcoming.Upcoming
-import retrofit2.Call
 import com.example.usher.models.multi_search.SearchResult
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class Repository constructor(val application: Application) {
 
+    val carouselData = MutableLiveData<Upcoming>()
     val playingData = MutableLiveData<NowPlaying>()
     val popularData = MutableLiveData<Popular>()
     val topData = MutableLiveData<TopRated>()
@@ -57,6 +58,28 @@ class Repository constructor(val application: Application) {
             }
         })
     }
+
+    /*fun getCarousel() {
+
+        val retrofitService = RetrofitInstance.getClient(application)
+        val callAPI = retrofitService.getUpcoming()
+
+        callAPI.enqueue(object : Callback<Upcoming> {
+            override fun onFailure(call: Call<Upcoming>, t: Throwable) {
+                Log.d("onFailure", "onFailure: ${t.message}")
+                Toast.makeText(application, "Error", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<Upcoming>, response: Response<Upcoming>) {
+                Log.d("nowPlaying", "onResponse: $response")
+                val play = response.body()
+                if (play != null) {
+                    val pop = play.results
+                    carouselData.value = Upcoming(pop)
+                }
+            }
+        })
+    }*/
 
     fun getLatest() {
 

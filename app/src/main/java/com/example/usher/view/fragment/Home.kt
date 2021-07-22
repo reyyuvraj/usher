@@ -1,8 +1,5 @@
 package com.example.usher.view.fragment
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,20 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import coil.ImageLoader
-import coil.request.ImageRequest
-import coil.request.SuccessResult
 import com.example.usher.R
 import com.example.usher.adapter.*
 import com.example.usher.databinding.HomeBinding
 import com.example.usher.util.InternetConnectivity
 import com.example.usher.viewmodel.ViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.*
 
 
 class Home : Fragment() {
@@ -93,8 +85,7 @@ class Home : Fragment() {
 
         viewModel.popularData.observe(viewLifecycleOwner, {
             adapterPopular.setData(it.results)
-            var a = it.results
-            Log.d("dekh", a.toString())
+            Log.d("see", "onViewCreated: ${it.results}")
         })
 
         viewModel.topData.observe(viewLifecycleOwner, {
@@ -102,7 +93,11 @@ class Home : Fragment() {
         })
 
         viewModel.upcomingData.observe(viewLifecycleOwner, {
+            Log.d("upcoming", "onViewCreated: ${it.results} ")
             adapterUpcoming.setData(it.results)
+            //the code below is for carousel image display
+            val adapter = AdapterCarousel(it.results, requireContext())
+            binding.carousel.adapter = adapter
         })
 
         binding.floatingActionButtonSearch.setOnClickListener {

@@ -3,8 +3,6 @@ package com.example.usher.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.usher.models.getTrending.Trending
 import com.example.usher.models.get_latest_movie.Latest
 import com.example.usher.models.get_movie_credits.MovieCredits
@@ -18,14 +16,11 @@ import com.example.usher.models.get_top_rated_movies.TopRated
 import com.example.usher.models.get_upcoming.Upcoming
 import com.example.usher.models.multi_search.SearchResult
 import com.example.usher.repository.Repository
-import com.example.usher.util.InternetConnectivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class ViewModel(application: Application) : AndroidViewModel(application) {
 
     val latestData: LiveData<Latest>
+    val carouselData: LiveData<Upcoming>
     val playingData: LiveData<NowPlaying>
     val popularData: LiveData<Popular>
     val topData: LiveData<TopRated>
@@ -36,7 +31,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
     val movieData: LiveData<MovieDetails>
     val personData: LiveData<PersonDetails>
     val personImagesData: LiveData<PersonImages>
-    var searchData : LiveData<SearchResult>
+    var searchData: LiveData<SearchResult>
 
     private val repository = Repository(application)
 
@@ -53,10 +48,15 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         this.personData = repository.personDetails
         this.personImagesData = repository.personImages
         this.searchData = repository.searchData
+        this.carouselData = repository.carouselData
     }
 
     fun getLatest() {
         repository.getLatest()
+    }
+
+    fun getCarousel() {
+        repository
     }
 
     fun getTrending() {
@@ -79,7 +79,7 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         repository.getUpcoming()
     }
 
-    fun searchData(query: String){
+    fun searchData(query: String) {
         repository.multiSearch(query)
     }
 
