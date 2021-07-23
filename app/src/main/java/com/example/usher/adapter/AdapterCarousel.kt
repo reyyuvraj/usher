@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.example.usher.R
 import com.example.usher.call.MoviesAPI
 import com.example.usher.models.get_upcoming.Result
+import com.example.usher.util.InternetConnectivity
+import com.google.android.material.snackbar.Snackbar
 
 class AdapterCarousel(val images: List<Result>, private val context: Context) :
     RecyclerView.Adapter<AdapterCarousel.ViewHolder>() {
@@ -33,9 +35,14 @@ class AdapterCarousel(val images: List<Result>, private val context: Context) :
         Glide.with(context).load(MoviesAPI.backdrop + entity.backdropPath).into(holder.newsImage)
 
         holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt("id", images[position].id)
-            it.findNavController().navigate(R.id.action_home_to_details, bundle)
+            if (InternetConnectivity.isNetworkAvailable(context) == true) {
+                val bundle = Bundle()
+                bundle.putInt("id", images[position].id)
+                it.findNavController().navigate(R.id.action_home_to_details, bundle)
+            } else {
+                Snackbar.make(it, "Please check your Internet connection!!", Snackbar.LENGTH_SHORT)
+                    .show()
+            }
         }
     }
 
