@@ -51,13 +51,13 @@ class ViewModel(application: Application) : AndroidViewModel(application) {
         this.carouselData = repository.carouselData
     }
 
-    fun getLatest() {
+    /*fun getLatest() {
         repository.getLatest()
     }
 
     fun getCarousel() {
         repository
-    }
+    }*/
 
     fun getTrending() {
         repository.getTrending()
