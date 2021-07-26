@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.example.usher.R
 import com.example.usher.adapter.*
 import com.example.usher.databinding.HomeBinding
@@ -43,9 +45,12 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val snapHelper: SnapHelper = PagerSnapHelper()
+
         val trendingRecyclerView: RecyclerView = binding.trending
         trendingRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        snapHelper.attachToRecyclerView(trendingRecyclerView)
         val playRecyclerView: RecyclerView = binding.nowPlaying
         playRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

@@ -32,7 +32,7 @@ class AdapterCarousel(val images: List<Result>, private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = images[position]
-        Glide.with(context).load(MoviesAPI.backdrop + entity.backdropPath).into(holder.newsImage)
+        Glide.with(context).load(MoviesAPI.backdrop + entity.backdropPath).into(holder.carouselImage)
 
         holder.itemView.setOnClickListener {
             if (InternetConnectivity.isNetworkAvailable(context) == true) {
@@ -54,6 +54,6 @@ class AdapterCarousel(val images: List<Result>, private val context: Context) :
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newsImage: ImageView = itemView.findViewById(R.id.carouselImage)
+        val carouselImage: ImageView = itemView.findViewById(R.id.carouselImage)
     }
 }

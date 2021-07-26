@@ -23,7 +23,7 @@ class AdapterMovieCast(private val context: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_view,
+                R.layout.item_cast,
                 parent,
                 false
             )
@@ -32,8 +32,8 @@ class AdapterMovieCast(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(MoviesAPI.backdrop + entity.profilePath).into(holder.newsImage)
-        holder.newsTitle.text = entity.originalName
+        Glide.with(context).load(MoviesAPI.backdrop + entity.profilePath).into(holder.castItemImage)
+        holder.castItemTitle.text = entity.originalName
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
@@ -50,9 +50,8 @@ class AdapterMovieCast(private val context: Context) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
-        val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
-
+        val castItemImage: ImageView = itemView.findViewById(R.id.castItemImage)
+        val castItemTitle: TextView = itemView.findViewById(R.id.castItemTitle)
     }
 
     fun setData(element: List<Cast>) {

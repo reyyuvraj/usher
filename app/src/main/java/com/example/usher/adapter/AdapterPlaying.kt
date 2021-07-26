@@ -33,8 +33,10 @@ class AdapterPlaying(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(backdrop + entity.posterPath).into(holder.newsImage)
-        holder.newsTitle.text = entity.title
+        Glide.with(context).load(backdrop + entity.posterPath).into(holder.movieImage)
+        holder.movieRating.text = entity.voteAverage.toString()
+        holder.movieTitle.text = entity.title
+        holder.movieRelease.text = entity.releaseDate.substring(0, 4)
 
         holder.itemView.setOnClickListener {
             if (InternetConnectivity.isNetworkAvailable(context) == true) {
@@ -53,8 +55,10 @@ class AdapterPlaying(private val context: Context) :
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
-        val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
+        val movieImage: ImageView = itemView.findViewById(R.id.searchImage)
+        val movieTitle: TextView = itemView.findViewById(R.id.searchTitle)
+        val movieRating: TextView = itemView.findViewById(R.id.viewRating)
+        val movieRelease: TextView = itemView.findViewById(R.id.viewYear)
     }
 
     fun setData(element: List<Result>) {

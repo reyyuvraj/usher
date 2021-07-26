@@ -37,7 +37,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/trending"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:orientation="horizontal"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
@@ -54,7 +54,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/topRated"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:orientation="horizontal"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
@@ -71,7 +71,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/nowPlaying"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/text03"
                 android:layout_marginTop="1dp"
                 android:orientation="horizontal"
@@ -89,11 +89,10 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upcoming"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:orientation="horizontal"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-                tools:listitem="@layout/item_view" />
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
             <TextView
                 android:id="@+id/text05"
@@ -107,7 +106,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/popular"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
                 android:orientation="horizontal"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />

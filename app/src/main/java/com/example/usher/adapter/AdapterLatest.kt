@@ -20,7 +20,7 @@ class AdapterLatest(private val context: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_latest,
+                R.layout.item_smooth,
                 parent,
                 false
             )

@@ -11,4 +11,6 @@
     <color name="nero">#1f1f1f</color>
     <color name="cardOne">#222222</color>
     <color name="cardList">#1a1a1a</color>
+    <color name="dimGray">#696969</color>
+    <color name="blackOlive">#3B3C36</color>
 </resources>

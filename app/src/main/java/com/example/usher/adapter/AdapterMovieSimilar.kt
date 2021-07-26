@@ -31,8 +31,10 @@ class AdapterMovieSimilar(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(MoviesAPI.backdrop + entity.posterPath).into(holder.newsImage)
-        holder.newsTitle.text = entity.title
+        Glide.with(context).load(MoviesAPI.backdrop + entity.posterPath).into(holder.movieImage)
+        holder.movieRating.text = entity.voteAverage.toString()
+        holder.movieTitle.text = entity.title
+        holder.movieRelease.text = entity.releaseDate.substring(0, 4)
 
         holder.itemView.setOnClickListener {
             val bundle = Bundle()
@@ -46,8 +48,10 @@ class AdapterMovieSimilar(private val context: Context) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
-        val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
+        val movieImage: ImageView = itemView.findViewById(R.id.searchImage)
+        val movieRating: TextView = itemView.findViewById(R.id.viewRating)
+        val movieTitle: TextView = itemView.findViewById(R.id.searchTitle)
+        val movieRelease: TextView = itemView.findViewById(R.id.viewYear)
 
     }
 

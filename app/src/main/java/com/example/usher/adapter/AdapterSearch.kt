@@ -18,8 +18,8 @@ class AdapterSearch(private val context: Context) :
     private var itemList: List<Result> = emptyList()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
-        val newstext: TextView = itemView.findViewById(R.id.viewTitle)
+        val searchItemImage: ImageView = itemView.findViewById(R.id.searchImage)
+        val searchItemText: TextView = itemView.findViewById(R.id.searchTitle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,9 +35,9 @@ class AdapterSearch(private val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
         val url = MoviesAPI.backdrop + item.posterPath
-        Glide.with(context).load(url).into(holder.newsImage)
+        Glide.with(context).load(url).into(holder.searchItemImage)
 
-        holder.newstext.text = item.title
+        holder.searchItemText.text = item.title
     }
 
 
@@ -49,5 +49,4 @@ class AdapterSearch(private val context: Context) :
         this.itemList = element
         notifyDataSetChanged()
     }
-
 }

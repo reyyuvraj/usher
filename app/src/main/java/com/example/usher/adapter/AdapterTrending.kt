@@ -24,7 +24,7 @@ class AdapterTrending(private val context: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_view,
+                R.layout.item_smooth,
                 parent,
                 false
             )
@@ -33,8 +33,9 @@ class AdapterTrending(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(MoviesAPI.backdrop + entity.posterPath).into(holder.newsImage)
-        holder.newsTitle.text = entity.title
+        Glide.with(context).load(MoviesAPI.backdrop + entity.backdropPath).into(holder.movieImage)
+        holder.movieTitle.text = entity.title
+        holder.movieOverview.text = entity.overview
 
         holder.itemView.setOnClickListener {
             if (InternetConnectivity.isNetworkAvailable(context) == true) {
@@ -53,8 +54,9 @@ class AdapterTrending(private val context: Context) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newsImage: ImageView = itemView.findViewById(R.id.viewImage)
-        val newsTitle: TextView = itemView.findViewById(R.id.viewTitle)
+        val movieImage: ImageView = itemView.findViewById(R.id.latestImage)
+        val movieTitle: TextView = itemView.findViewById(R.id.latestTitle)
+        val movieOverview: TextView = itemView.findViewById(R.id.conOverview)
     }
 
     fun setData(element: List<Result>) {

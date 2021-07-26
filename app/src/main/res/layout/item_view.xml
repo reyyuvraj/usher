@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="130dp"
+    android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
-    android:layout_marginTop="20dp"
+    android:layout_marginVertical="20dp"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
@@ -19,22 +19,63 @@
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/viewImage"
-            android:layout_width="130dp"
+            android:id="@+id/searchImage"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/viewTitle"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/star"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/viewRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sample_num"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/white"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/searchTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="start"
             android:ellipsize="end"
             android:maxLines="1"
-            android:padding="3dp"
-            android:text="MovieName"
+            android:layout_marginVertical="3dp"
+            android:text="@string/sample_short"
             android:textColor="@color/white"
             android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/viewYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sample_num"
+                android:textColor="@color/dimGray"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

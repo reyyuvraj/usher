@@ -29,7 +29,7 @@ class AdapterCastImages(private val context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
-        Glide.with(context).load(MoviesAPI.backdrop + entity.filePath).into(holder.newsImage)
+        Glide.with(context).load(MoviesAPI.backdrop + entity.filePath).into(holder.castImage)
     }
 
     override fun getItemCount(): Int {
@@ -37,7 +37,7 @@ class AdapterCastImages(private val context: Context) :
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val newsImage: ImageView = itemView.findViewById(R.id.castImagesUnit)
+        val castImage: ImageView = itemView.findViewById(R.id.castImagesUnit)
     }
 
     fun setData(element: List<Profile>) {
