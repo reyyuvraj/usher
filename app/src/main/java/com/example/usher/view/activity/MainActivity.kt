@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.usher.R
 import com.example.usher.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController)
+
+        bottomNav.setupWithNavController(navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {

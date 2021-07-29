@@ -22,8 +22,19 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/bottomNav"
         android:layout_below="@id/toolbar"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/nero"
+        app:itemIconSize="20dp"
+        app:itemRippleColor="@color/yellow"
+        app:menu="@menu/bottom_nav" />
 
 </RelativeLayout>
