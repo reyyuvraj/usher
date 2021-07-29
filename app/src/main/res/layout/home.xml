@@ -34,6 +34,11 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
+            <androidx.constraintlayout.widget.Placeholder
+                android:id="@+id/trendingPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/trending"
                 android:layout_width="match_parent"
