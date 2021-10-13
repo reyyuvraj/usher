@@ -12,8 +12,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RetrofitInstance {
-    private const val cacheSize : Long = 50 * 1024 * 1024
-    fun getClient(context: Context): MoviesAPI{
+    private const val cacheSize: Long = 50 * 1024 * 1024
+    fun getClient(context: Context): MoviesAPI {
         val cache: Cache = Cache(context.cacheDir, cacheSize)
 
         val REWRITE_RESPONSE_INTERCEPTOR = Interceptor { chain ->

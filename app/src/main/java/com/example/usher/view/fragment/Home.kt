@@ -149,7 +149,7 @@ class Home : Fragment() {
             binding.carousel.adapter = adapter
         })
 
-        binding.floatingActionButtonSearch.setOnClickListener {
+        /*binding.floatingActionButtonSearch.setOnClickListener {
             if (!InternetConnectivity.isNetworkAvailable(requireContext())!!)
                 Snackbar.make(
                     view,
@@ -159,7 +159,7 @@ class Home : Fragment() {
                     .show()
             else
                 Navigation.findNavController(view).navigate(R.id.action_home_to_search)
-        }
+        }*/
     }
 
     override fun onResume() {

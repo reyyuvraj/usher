@@ -15,6 +15,7 @@ import com.example.usher.call.MoviesAPI.Companion.backdrop
 import com.example.usher.models.get_popular_movie.Result
 import com.example.usher.util.InternetConnectivity
 import com.google.android.material.snackbar.Snackbar
+import java.util.Collections.emptyList
 
 
 class AdapterPopular(private val context: Context) :

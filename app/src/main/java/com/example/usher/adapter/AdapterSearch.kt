@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.usher.R
 import com.example.usher.call.MoviesAPI
 import com.example.usher.models.multi_search.Result
+import java.util.Collections.emptyList
 
 class AdapterSearch(private val context: Context) :
     RecyclerView.Adapter<AdapterSearch.ViewHolder>() {

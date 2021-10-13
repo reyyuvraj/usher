@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.usher.R
 import com.example.usher.call.MoviesAPI
 import com.example.usher.models.get_person_images.Profile
+import java.util.Collections.emptyList
 
 class AdapterCastImages(private val context: Context) :
     RecyclerView.Adapter<AdapterCastImages.ViewHolder>() {

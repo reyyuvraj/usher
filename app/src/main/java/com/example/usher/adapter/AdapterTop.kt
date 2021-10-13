@@ -15,6 +15,7 @@ import com.example.usher.call.MoviesAPI.Companion.backdrop
 import com.example.usher.models.get_top_rated_movies.Result
 import com.example.usher.util.InternetConnectivity
 import com.google.android.material.snackbar.Snackbar
+import java.util.Collections.emptyList
 
 
 class AdapterTop(
@@ -38,7 +39,7 @@ class AdapterTop(
         Glide.with(context).load(backdrop + entity.posterPath).into(holder.movieImage)
         holder.movieRating.text = entity.voteAverage.toString()
         holder.movieTitle.text = entity.title
-        holder.movieRelease.text = entity.releaseDate.substring(0, 4)
+        holder.movieRelease.text = entity.releaseDate.subSequence(0,4)
 
         holder.itemView.setOnClickListener {
             if (InternetConnectivity.isNetworkAvailable(context) == true) {

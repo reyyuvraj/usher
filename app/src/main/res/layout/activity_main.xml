@@ -33,6 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/nero"
+        app:itemIconTint="@color/yellow"
+        app:itemTextColor="@color/yellow"
         app:itemIconSize="20dp"
         app:itemRippleColor="@color/yellow"
         app:menu="@menu/bottom_nav" />
