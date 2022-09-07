@@ -32,7 +32,7 @@ class AdapterMovieSimilar(private val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val entity = itemList[position]
         Glide.with(context).load(MoviesAPI.backdrop + entity.posterPath).into(holder.movieImage)
-        holder.movieRating.text = entity.voteAverage.toString()
+        holder.movieRating.text = entity.voteAverage.toString().subSequence(0,3)
         holder.movieTitle.text = entity.title
         holder.movieRelease.text = entity.releaseDate.substring(0, 4)
 

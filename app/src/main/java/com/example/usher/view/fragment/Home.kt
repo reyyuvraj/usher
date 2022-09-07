@@ -39,7 +39,7 @@ class Home : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = HomeBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -124,30 +124,30 @@ class Home : Fragment() {
         })
         mHandler.postDelayed(scrollingRunnable, 2000)
 
-        viewModel.trendingData.observe(viewLifecycleOwner, {
+        viewModel.trendingData.observe(viewLifecycleOwner) {
             adapterTrending.setData(it.results)
-        })
+        }
 
-        viewModel.playingData.observe(viewLifecycleOwner, {
+        viewModel.playingData.observe(viewLifecycleOwner) {
             adapterPlaying.setData(it.results)
-        })
+        }
 
-        viewModel.popularData.observe(viewLifecycleOwner, {
+        viewModel.popularData.observe(viewLifecycleOwner) {
             adapterPopular.setData(it.results)
             Log.d("see", "onViewCreated: ${it.results}")
-        })
+        }
 
-        viewModel.topData.observe(viewLifecycleOwner, {
+        viewModel.topData.observe(viewLifecycleOwner) {
             adapterTop.setData(it.results)
-        })
+        }
 
-        viewModel.upcomingData.observe(viewLifecycleOwner, {
+        viewModel.upcomingData.observe(viewLifecycleOwner) {
             Log.d("upcoming", "onViewCreated: ${it.results} ")
             adapterUpcoming.setData(it.results)
             //the code below is for carousel image display
             val adapter = AdapterCarousel(it.results as ArrayList<Result>, requireContext())
             binding.carousel.adapter = adapter
-        })
+        }
 
         /*binding.floatingActionButtonSearch.setOnClickListener {
             if (!InternetConnectivity.isNetworkAvailable(requireContext())!!)

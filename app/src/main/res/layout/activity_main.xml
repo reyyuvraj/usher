@@ -33,10 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/nero"
-        app:itemIconTint="@color/yellow"
-        app:itemTextColor="@color/yellow"
         app:itemIconSize="20dp"
+        app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
         app:itemRippleColor="@color/yellow"
+        app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
         app:menu="@menu/bottom_nav" />
 
 </RelativeLayout>

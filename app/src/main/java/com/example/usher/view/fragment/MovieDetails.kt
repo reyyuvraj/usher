@@ -32,7 +32,7 @@ class MovieDetails : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DetailsBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -61,15 +61,15 @@ class MovieDetails : Fragment() {
         similarRecyclerView.adapter = adapterSimilarMovies
 
 
-        viewModel.castData.observe(viewLifecycleOwner, {
+        viewModel.castData.observe(viewLifecycleOwner) {
             adapterMovieCast.setData(it.cast)
-        })
+        }
 
-        viewModel.similarData.observe(viewLifecycleOwner, {
+        viewModel.similarData.observe(viewLifecycleOwner) {
             adapterSimilarMovies.setData(it.results)
-        })
+        }
 
-        viewModel.movieData.observe(viewLifecycleOwner, {
+        viewModel.movieData.observe(viewLifecycleOwner) {
             progressBar = binding.progressBar
             progressBar.visibility = View.GONE
             binding.contentTitle.text = it.title
@@ -80,7 +80,7 @@ class MovieDetails : Fragment() {
             binding.voteCount.text = it.voteCount.toString()
 
             (activity as AppCompatActivity?)!!.supportActionBar!!.title = it.title
-        })
+        }
 
         binding.voteCard.setOnClickListener {
             Snackbar.make(it, "Votes", Snackbar.LENGTH_SHORT).show()

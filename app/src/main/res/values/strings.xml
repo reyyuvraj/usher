@@ -3,4 +3,5 @@
     <string name="sample_short">Sample</string>
     <string name="sample_long">Sample data for sample test of the string and view in the test</string>
     <string name="sample_num">9.9</string>
+    <string name="tnc"><u>term and condition</u></string>
 </resources>
